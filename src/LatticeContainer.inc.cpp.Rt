@@ -262,7 +262,7 @@ void LatticeContainer::Free()
   iterates over all elements and runs them with RunElement function.
   constContainer.dx/dy is to calculate only internal nodes
 */
-template <class N> CudaGlobalFunction void __launch_bounds__(64,6) RunKernel()
+template <class N> CudaGlobalFunction void __launch_bounds__(512,1) RunKernel()
 {
 	N now;
 	now.x_ = CudaThread.x + CudaBlock.z*CudaNumberOfThreads.x + constContainer.dx;
@@ -296,7 +296,7 @@ template <class N> CudaGlobalFunction void __launch_bounds__(64,6) RunKernel()
 /**
   iterates over border elements and runs them with RunElement function
 */
-template <class N> CudaGlobalFunction void __launch_bounds__(64,6) RunBorderKernel()
+template <class N> CudaGlobalFunction void __launch_bounds__(512,1) RunBorderKernel()
 {
 	N now;
 	now.x_ = CudaThread.x + CudaBlock.y*X_BLOCK;
